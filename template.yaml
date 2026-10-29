@@ -15,8 +15,64 @@ secciones:
   - { id: contacto, nombre: Contacto }
 estilo: contundente
 plan_minimo: gratis
-version: 1.0.0
+version: 1.1.0
 base: astrowind
 demo_url: https://demo-plantilla-reformas-oficios.noexpertise.com
 activa: true
 orden: 100
+
+# Asistente de puesta en marcha (NoExpertise): un paso por pantalla. Rutas del site sin índices;
+# tipos: texto y lista (la IA propone), datos, fotos, eleccion (colores y logo) y repaso.
+asistente:
+  - id: negocio
+    titulo: "Tu empresa"
+    pregunta: "¿Cómo se llama tu empresa y qué trabajos hacéis?"
+    ayuda: "Reformas, fontanería, electricidad… y en qué zona trabajáis."
+    tipo: texto
+    campos: [nombre, eslogan, secciones.hero.antetitulo, secciones.hero.titulo, secciones.hero.texto, secciones.hero.destacado.titulo, secciones.hero.destacado.texto, seo.descripcion]
+  - id: contacto
+    titulo: "Cómo te encuentran"
+    pregunta: "¿Dónde estáis y cómo os pueden llamar o escribir?"
+    ayuda: "Solo lo que quieras que vean tus clientes. Lo que dejes vacío no sale en tu web."
+    tipo: datos
+    campos: [contacto.telefono, contacto.whatsapp, contacto.email, contacto.direccion, contacto.horario, redes.instagram, redes.facebook]
+  - id: servicios
+    titulo: "Tus servicios"
+    pregunta: "¿Qué trabajos hacéis? Uno por línea."
+    tipo: texto
+    campos: [secciones.servicios.titulo, secciones.servicios.texto, secciones.servicios.items]
+  - id: proceso
+    titulo: "Cómo trabajáis"
+    pregunta: "¿Cómo es un encargo con vosotros, desde la primera llamada hasta el final?"
+    tipo: texto
+    campos: [secciones.proceso.titulo, secciones.proceso.items]
+  - id: trabajos
+    titulo: "Trabajos hechos"
+    pregunta: "Cuéntame algunos trabajos que hayáis hecho: qué y dónde. Uno por línea."
+    ayuda: "Las fotos de antes y después las pones luego en Contenido."
+    tipo: lista
+    campos: [secciones.trabajos.trabajos]
+  - id: zonas
+    titulo: "Dónde trabajáis"
+    pregunta: "¿En qué pueblos o barrios trabajáis?"
+    tipo: texto
+    campos: [secciones.zonas.titulo, secciones.zonas.texto, secciones.zonas.items]
+  - id: presupuesto
+    titulo: "Pide presupuesto"
+    pregunta: "¿Cómo dais un presupuesto? ¿Vais a verlo, es sin compromiso…?"
+    tipo: texto
+    campos: [secciones.presupuesto.titulo, secciones.presupuesto.texto, secciones.presupuesto.nota]
+  - id: fotos
+    titulo: "Tus fotos"
+    pregunta: "Pon una foto de portada y, si quieres, alguna más."
+    ayuda: "Sube las tuyas o elige una del banco. Las que no cambies se quedan como están."
+    tipo: fotos
+    campos: [secciones.hero.imagen, secciones.zonas.imagen, secciones.contacto.imagen]
+  - id: aspecto
+    titulo: "Colores y logo"
+    pregunta: "Elige los colores de tu web y, si tienes, tu logo."
+    tipo: eleccion
+    campos: [colores.primario, colores.acento, logo]
+  - id: repaso
+    titulo: "Repaso"
+    tipo: repaso
