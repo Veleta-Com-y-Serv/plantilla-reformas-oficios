@@ -1,0 +1,35 @@
+---
+// Cifras: banda amarilla en diagonal con números grandes. `items: [{titulo (la cifra, "+300"), texto}]`.
+// No se pinta si la lista está vacía (la plataforma nunca inventa cifras).
+import { seccion } from '../../data/site';
+import Titular from '../ui/Titular.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+const items = s ? s.items.filter((it) => it && it.titulo) : [];
+---
+
+{
+  s && items.length > 0 && (
+    <section id={Astro.props.id} class="banda-primaria diagonal-ambas">
+      <div class="contenedor">
+        <Titular antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} />
+        <dl class="cifras">
+          {items.map((it) => (
+            <div class="cifra">
+              <dt class="cifra-numero">{it.titulo}</dt>
+              {it.texto && <dd class="cifra-texto">{it.texto}</dd>}
+            </div>
+          ))}
+        </dl>
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .cifras { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.75rem 1.25rem; }
+  @media (min-width: 900px) { .cifras { grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); } }
+  .cifra { border-left: 6px solid currentColor; padding-left: 1rem; min-width: 0; }
+  .cifra-numero { font-family: var(--fuente-titulos); font-weight: 900; font-size: clamp(2rem, 8vw, 3.75rem); line-height: 1; letter-spacing: -0.02em; overflow-wrap: anywhere; }
+  .cifra-texto { margin-top: .5rem; font-weight: 700; text-transform: uppercase; font-size: .85rem; letter-spacing: .05em; }
+</style>

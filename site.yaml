@@ -1,0 +1,143 @@
+# Contenido de la web. Es lo único que rellena la plataforma NoExpertise.
+# Una sola página: el menú apunta a anclas (#id-de-sección).
+# Las secciones se muestran en el orden de este fichero. Para ocultar una: activa: false.
+# Apartado nuevo: un id propio (es su ancla, /#id) con `tipo:` = el diseño de otra sección o `texto`.
+# Listas planas: nunca una lista dentro de un elemento de lista. Precios y cifras, siempre entre comillas.
+nombre: Reformas Moncayo
+eslogan: Reformas, fontanería y electricidad en Tarazona y comarca. Un solo equipo, un solo presupuesto.
+sector: reformas
+logo: ""          # ruta a una imagen en public/ (p. ej. /logo.svg). Vacío = nombre en texto.
+colores:
+  primario: "#f5c400"   # amarillo obra (botones, etiquetas, banda de cifras)
+  acento: "#c2410c"     # detalles
+  fondo: "#ffffff"
+  texto: "#151515"      # también es el color de las bandas oscuras
+contacto:
+  telefono: "976 64 18 02"
+  email: presupuestos@reformasmoncayo.es
+  direccion: Avenida de la Paz 22, 50500 Tarazona (Zaragoza)
+  horario: "Lunes a viernes, de 8:00 a 19:00. Sábados, de 9:00 a 13:00."
+  whatsapp: "+34 622 41 87 30"
+redes:
+  instagram: https://www.instagram.com/
+  facebook: https://www.facebook.com/
+  linkedin: ""
+menu:
+  - { texto: Servicios, url: "/#servicios" }
+  - { texto: Trabajos, url: "/#trabajos" }
+  - { texto: Zonas, url: "/#zonas" }
+  - { texto: Opiniones, url: "/#opiniones" }
+  - { texto: Contacto, url: "/#contacto" }
+boton_cabecera: { texto: Pide presupuesto, url: "/#presupuesto" }
+seo:
+  titulo: Reformas Moncayo · Reformas, fontanería y electricidad en Tarazona
+  descripcion: "Reformas integrales, cocinas, baños, fontanería y electricidad en Tarazona, Borja y el Moncayo. Visita y presupuesto gratis en 24 horas."
+  tipo: HomeAndConstructionBusiness
+marca_pie: true
+
+secciones:
+  hero:
+    activa: true
+    antetitulo: Tarazona y comarca del Moncayo
+    titulo: Reformamos tu casa sin sorpresas
+    texto: "Albañiles, fontaneros, electricistas y pintores propios. Precio cerrado y fecha de entrega que se cumple."
+    imagen: /fotos/hero.jpg
+    destacado: { titulo: Urgencias 24 h, texto: "Fugas de agua y averías eléctricas. Te llamamos en menos de una hora." }
+    cta: { texto: Llamar ahora, url: "tel:+34976641802" }
+    cta_secundario: { texto: Presupuesto gratis, url: "/#presupuesto" }
+    formulario_titulo: Te llamamos hoy
+    boton_formulario: Quiero que me llaméis
+
+  servicios:
+    activa: true
+    antetitulo: Servicios
+    titulo: Todo lo que necesita tu casa
+    texto: "Un solo equipo para toda la obra. Sin ir llamando a cinco gremios."
+    items:
+      - { titulo: Reformas integrales, texto: "Pisos y casas completas, con proyecto y licencia.", icono: casa }
+      - { titulo: Cocinas, texto: "Muebles, encimeras, azulejos e instalación nueva.", icono: cocina }
+      - { titulo: Baños, texto: "Cambiamos la bañera por plato de ducha en dos días.", icono: ducha }
+      - { titulo: Fontanería, texto: "Tuberías, calentadores, fugas y desatascos.", icono: grifo }
+      - { titulo: Electricidad, texto: "Cuadros, boletines, puntos de luz y cargadores.", icono: enchufe }
+      - { titulo: Pintura, texto: "Interiores, fachadas y alisado de gotelé.", icono: rodillo }
+      - { titulo: Carpintería y ventanas, texto: "Puertas, armarios y ventanas de PVC o aluminio.", icono: ventana }
+      - { titulo: Tejados y fachadas, texto: "Goteras, aislamiento y rehabilitación.", icono: ladrillo }
+
+  proceso:
+    activa: true
+    antetitulo: Cómo trabajamos
+    titulo: De la llamada a la entrega en cuatro pasos
+    items:
+      - { titulo: Nos llamas, texto: "Por teléfono, WhatsApp o el formulario. Te atendemos el mismo día.", icono: telefono }
+      - { titulo: Visita gratis, texto: "Vamos a tu casa, medimos y vemos contigo lo que quieres.", icono: plano }
+      - { titulo: Precio cerrado, texto: "En 24 horas tienes el presupuesto por escrito y con fechas.", icono: euro }
+      - { titulo: Obra y limpieza, texto: "Un encargado de obra de principio a fin. Te entregamos la casa limpia.", icono: check }
+
+  trabajos:
+    activa: true
+    antetitulo: Trabajos hechos
+    titulo: Antes y después
+    texto: "Algunas obras recientes en la comarca."
+    etiqueta_antes: Antes
+    etiqueta_despues: Después
+    trabajos:
+      - { titulo: Cocina completa, lugar: Tarazona, texto: "Cocina de los 80 a cocina abierta al salón. Tres semanas de obra.", imagen: /fotos/trabajo-cocina.jpg, imagen_antes: /fotos/trabajo-cocina-antes.jpg }
+      - { titulo: Baño con plato de ducha, lugar: Borja, texto: "Fuera bañera, plato extraplano y mampara. Listo en dos días.", imagen: /fotos/trabajo-bano.jpg, imagen_antes: /fotos/trabajo-bano-antes.jpg }
+      - { titulo: Tejado y aislamiento, lugar: Vera de Moncayo, texto: "Teja nueva, impermeabilización y aislamiento térmico.", imagen: /fotos/trabajo-tejado.jpg, imagen_antes: /fotos/trabajo-tejado-antes.jpg }
+      - { titulo: Fachada de casa de pueblo, lugar: Novallas, texto: "Picado, rejuntado de piedra y pintura de carpinterías.", imagen: /fotos/trabajo-fachada.jpg }
+
+  cifras:
+    activa: true
+    antetitulo: En números
+    titulo: Oficio de toda la vida
+    items:
+      - { titulo: "+600", texto: obras terminadas }
+      - { titulo: "25", texto: años en la comarca }
+      - { titulo: "24 h", texto: para tu presupuesto }
+      - { titulo: "2 años", texto: de garantía por escrito }
+
+  zonas:
+    activa: true
+    antetitulo: Dónde trabajamos
+    titulo: Tarazona y 40 km alrededor
+    texto: "Moncayo, Campo de Borja y la zona de Ágreda. Si tu pueblo no está, pregúntanos."
+    imagen: /fotos/comarca.jpg
+    items:
+      - { titulo: Tarazona }
+      - { titulo: Borja }
+      - { titulo: Ágreda }
+      - { titulo: Novallas }
+      - { titulo: Malón }
+      - { titulo: Vera de Moncayo }
+      - { titulo: Torrellas }
+      - { titulo: Los Fayos }
+      - { titulo: Grisel }
+      - { titulo: Ainzón }
+
+  opiniones:
+    activa: true
+    antetitulo: Opiniones
+    titulo: Lo que dicen nuestros clientes
+    testimonios:
+      - { texto: "Nos hicieron el baño en dos días, tal y como dijeron. Lo dejaron todo limpio.", autor: Pilar G., nota: "Baño completo, Tarazona" }
+      - { texto: "Presupuesto cerrado y ni un euro más. El encargado nos llamaba cada viernes para contarnos cómo iba.", autor: Javier y Ana, nota: "Reforma integral, Borja" }
+      - { texto: "Tenía una fuga un domingo y en una hora estaban en casa. Muy serios.", autor: Manuel R., nota: "Urgencia de fontanería, Novallas" }
+
+  presupuesto:
+    activa: true
+    antetitulo: Presupuesto gratis
+    titulo: Cuéntanos tu obra
+    texto: "Rellena el formulario y te llamamos para concertar la visita."
+    nota: "Sin compromiso. Te contestamos en 24 horas."
+    boton_formulario: Pedir presupuesto
+    items:
+      - { titulo: Visita y medición gratis, texto: "Vamos a verlo sin coste.", icono: plano }
+      - { titulo: Precio cerrado por escrito, texto: "Lo que firmas es lo que pagas.", icono: euro }
+      - { titulo: Un único responsable, texto: "Un encargado de obra te atiende de principio a fin.", icono: usuarios }
+
+  contacto:
+    activa: true
+    antetitulo: Contacto
+    titulo: Llámanos o pásate por el taller
+    texto: "Te atendemos por teléfono, WhatsApp o en persona."
+    imagen: /fotos/taller.jpg

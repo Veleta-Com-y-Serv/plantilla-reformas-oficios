@@ -1,0 +1,22 @@
+# Metadatos de la plantilla para el catálogo de NoExpertise.
+id: reformas-oficios
+nombre: Reformas y oficios
+descripcion: Web contundente para reformas y oficios, con urgencias, trabajos antes y después y presupuesto.
+sectores: [reformas, fontaneria, electricidad, construccion, instalaciones, pintura, carpinteria]
+secciones:
+  - { id: hero, nombre: Portada }
+  - { id: servicios, nombre: Servicios }
+  - { id: proceso, nombre: Cómo trabajamos }
+  - { id: trabajos, nombre: Trabajos antes y después }
+  - { id: cifras, nombre: Cifras }
+  - { id: zonas, nombre: Zonas de trabajo }
+  - { id: opiniones, nombre: Opiniones }
+  - { id: presupuesto, nombre: Pedir presupuesto }
+  - { id: contacto, nombre: Contacto }
+estilo: contundente
+plan_minimo: gratis
+version: 1.0.0
+base: astrowind
+demo_url: https://demo-plantilla-reformas-oficios.noexpertise.com
+activa: true
+orden: 100

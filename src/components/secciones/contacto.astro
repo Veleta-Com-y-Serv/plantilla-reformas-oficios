@@ -1,0 +1,84 @@
+---
+// Contacto: bloques grandes con borde grueso (teléfono, WhatsApp, email, dirección y horario de site.yaml → contacto)
+// e `imagen` opcional (plano). Si la sección «presupuesto» no está activa, añade aquí el formulario de contacto.
+import { seccion, site, tel, whatsapp, mapa } from '../../data/site';
+import Seccion from '../ui/Seccion.astro';
+import Titular from '../ui/Titular.astro';
+import Icono from '../ui/Icono.astro';
+import Imagen from '../ui/Imagen.astro';
+import FormularioContacto from '../ui/FormularioContacto.astro';
+interface Props { id: string }
+const { id } = Astro.props;
+const s = seccion(id);
+const c = site.contacto;
+const conFormulario = !seccion('presupuesto');
+const botonForm = (s?.boton_formulario as string) || undefined;
+---
+
+{
+  s && (
+    <Seccion id={id}>
+      <Titular antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} />
+      <div class:list={['grid gap-8', { 'lg:grid-cols-2 lg:gap-12': s.imagen || conFormulario }]}>
+        <ul class="grid content-start gap-3">
+          {c.telefono && (
+            <li>
+              <a class="dato dato--grande" href={tel(c.telefono)}>
+                <Icono nombre="telefono" tam={28} class="shrink-0" />
+                <span>{c.telefono}</span>
+              </a>
+            </li>
+          )}
+          {c.whatsapp && (
+            <li>
+              <a class="dato" href={whatsapp(c.whatsapp)} rel="noopener" target="_blank">
+                <Icono nombre="whatsapp" class="shrink-0" />
+                <span>WhatsApp</span>
+              </a>
+            </li>
+          )}
+          {c.email && (
+            <li>
+              <a class="dato" href={`mailto:${c.email}`}>
+                <Icono nombre="correo" class="shrink-0" />
+                <span class="break-all">{c.email}</span>
+              </a>
+            </li>
+          )}
+          {c.direccion && (
+            <li>
+              <a class="dato" href={mapa(c.direccion)} rel="noopener" target="_blank">
+                <Icono nombre="mapa" class="shrink-0" />
+                <span>{c.direccion}</span>
+              </a>
+            </li>
+          )}
+          {c.horario && (
+            <li>
+              <p class="dato">
+                <Icono nombre="reloj" class="shrink-0" />
+                <span>{c.horario}</span>
+              </p>
+            </li>
+          )}
+        </ul>
+        {conFormulario ? (
+          <div class="tarjeta p-6 md:p-8">
+            <FormularioContacto modelo="contacto" prefijo={`${id}-f`} boton={botonForm} />
+          </div>
+        ) : (
+          s.imagen && (
+            <Imagen src={s.imagen} alt="" ancho={1200} alto={800} class="aspect-[3/2] w-full border-[3px] border-texto object-cover" />
+          )
+        )}
+      </div>
+    </Seccion>
+  )
+}
+
+<style>
+  .dato { display: flex; align-items: center; gap: .85rem; height: 100%; padding: 1rem 1.1rem; border: var(--borde) solid var(--c-texto); border-left-width: 8px; border-left-color: var(--c-primario); text-decoration: none; font-weight: 700; overflow-wrap: anywhere; }
+  a.dato:hover { background: var(--superficie); }
+  .dato--grande { font-family: var(--fuente-titulos); font-weight: 900; font-size: clamp(1.4rem, 6vw, 2.4rem); background: var(--c-primario); color: var(--sobre-primario); border-color: var(--c-primario); }
+  a.dato--grande:hover { background: color-mix(in srgb, var(--c-primario) 85%, var(--c-texto)); }
+</style>

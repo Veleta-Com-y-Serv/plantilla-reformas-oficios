@@ -1,0 +1,34 @@
+---
+// Servicios en rejilla densa (6-8): tarjetas con borde grueso a la izquierda e icono en caja negra.
+// Sus títulos son también las opciones de «Tipo de trabajo» del formulario de presupuesto.
+import { seccion } from '../../data/site';
+import Seccion from '../ui/Seccion.astro';
+import Titular from '../ui/Titular.astro';
+import Icono from '../ui/Icono.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+---
+
+{
+  s && (
+    <Seccion id={Astro.props.id} class="banda-gris">
+      <Titular antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} />
+      {s.items.length > 0 && (
+        <ul class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {s.items.map((it) => (
+            <li class="tarjeta grid grid-cols-[auto_1fr] items-start gap-x-4 gap-y-1 sm:flex sm:flex-col sm:gap-3">
+              <span class="icono-caja row-span-2"><Icono nombre={it.icono} /></span>
+              <h3 class="text-base md:text-lg">{it.titulo}</h3>
+              {it.texto && <p class="text-[.95rem] leading-snug opacity-80">{it.texto}</p>}
+            </li>
+          ))}
+        </ul>
+      )}
+      {s.cta && (
+        <p class="mt-10">
+          <a class="btn" href={s.cta.url}>{s.cta.texto}</a>
+        </p>
+      )}
+    </Seccion>
+  )
+}

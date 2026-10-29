@@ -1,0 +1,70 @@
+---
+// Trabajos hechos: `trabajos: [{titulo, texto, lugar, imagen, imagen_antes}]`.
+// Si un trabajo trae `imagen_antes`, se pinta el par antes/después lado a lado con etiquetas
+// (textos de las etiquetas: `etiqueta_antes` y `etiqueta_despues` de la sección; por defecto «Antes» y «Después»).
+import { seccion } from '../../data/site';
+import Seccion from '../ui/Seccion.astro';
+import Titular from '../ui/Titular.astro';
+import Imagen from '../ui/Imagen.astro';
+import Icono from '../ui/Icono.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+const antes = (s?.etiqueta_antes as string) || 'Antes';
+const despues = (s?.etiqueta_despues as string) || 'Después';
+---
+
+{
+  s && (
+    <Seccion id={Astro.props.id}>
+      <Titular antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} />
+      {s.trabajos.length > 0 && (
+        <ul class="grid gap-8 md:grid-cols-2 md:gap-x-8 md:gap-y-12">
+          {s.trabajos.map((t) => (
+            <li class="trabajo">
+              {t.imagen_antes && t.imagen ? (
+                <div class="trabajo-par">
+                  <figure class="trabajo-foto">
+                    <Imagen src={t.imagen_antes} alt={`${t.titulo}: ${antes.toLowerCase()}`} ancho={600} alto={600} class="aspect-square w-full object-cover" />
+                    <figcaption class="trabajo-etiqueta trabajo-etiqueta--antes">{antes}</figcaption>
+                  </figure>
+                  <figure class="trabajo-foto">
+                    <Imagen src={t.imagen} alt={`${t.titulo}: ${despues.toLowerCase()}`} ancho={600} alto={600} class="aspect-square w-full object-cover" />
+                    <figcaption class="trabajo-etiqueta">{despues}</figcaption>
+                  </figure>
+                </div>
+              ) : (
+                (t.imagen || t.imagen_antes) && (
+                  <Imagen src={t.imagen || t.imagen_antes} alt={t.titulo} ancho={1200} alto={675} class="aspect-[16/9] w-full object-cover" />
+                )
+              )}
+              <div class="trabajo-texto">
+                <h3 class="text-lg md:text-xl">{t.titulo}</h3>
+                {t.lugar && (
+                  <p class="mt-1 flex items-center gap-1.5 text-sm font-bold uppercase tracking-wide opacity-75">
+                    <Icono nombre="mapa" tam={16} />
+                    {t.lugar}
+                  </p>
+                )}
+                {t.texto && <p class="mt-3 opacity-85">{t.texto}</p>}
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+      {s.cta && (
+        <p class="mt-10">
+          <a class="btn" href={s.cta.url}>{s.cta.texto}</a>
+        </p>
+      )}
+    </Seccion>
+  )
+}
+
+<style>
+  .trabajo { display: flex; flex-direction: column; border: var(--borde) solid var(--c-texto); background: var(--c-fondo); }
+  .trabajo-par { display: grid; grid-template-columns: 1fr 1fr; gap: var(--borde); background: var(--c-texto); }
+  .trabajo-foto { position: relative; margin: 0; }
+  .trabajo-etiqueta { position: absolute; left: 0; bottom: 0; padding: .3rem .6rem; font-family: var(--fuente-titulos); font-weight: 900; font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; background: var(--c-primario); color: var(--sobre-primario); }
+  .trabajo-etiqueta--antes { background: var(--c-texto); color: var(--c-fondo); }
+  .trabajo-texto { padding: 1.25rem 1.25rem 1.5rem; border-top: var(--borde) solid var(--c-texto); border-left: 6px solid var(--c-primario); flex: 1; }
+</style>

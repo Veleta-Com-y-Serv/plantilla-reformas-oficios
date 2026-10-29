@@ -1,0 +1,123 @@
+/* Reformas y oficios — estilo contundente: amarillo obra + negro, titulares pesados en mayúsculas,
+   bordes de sección en diagonal, tarjetas con borde grueso a la izquierda y esquinas rectas.
+   Los cuatro colores vienen de site.yaml: las bandas oscuras usan --c-texto como fondo y --c-fondo como letra,
+   así el diseño se invierte bien si el cliente elige un fondo oscuro. */
+@import "tailwindcss";
+@import "./comun.css";
+@config "../../tailwind.config.mjs";
+
+:root {
+  --fuente-texto: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --fuente-titulos: "Arial Black", "Helvetica Neue", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --radio: 0; --ritmo: 4rem; --ritmo-md: 6rem; --ancho: 76rem;
+  --diagonal: clamp(1.5rem, 5vw, 4.5rem);
+  --borde: 3px;
+  /* Letra sobre el color primario: negra si el primario es claro, blanca si es oscuro. */
+  --sobre-primario: var(--c-texto);
+  --superficie: color-mix(in srgb, var(--c-texto) 5%, var(--c-fondo));
+  --linea: color-mix(in srgb, var(--c-texto) 16%, transparent);
+  --alto-barra: 2.25rem;
+}
+@supports (color: oklch(from red l c h)) {
+  :root { --sobre-primario: oklch(from var(--c-primario) clamp(0, (0.7 - l) * 100, 1) 0 0); }
+}
+
+@layer base {
+  body { font-family: var(--fuente-texto); font-size: 1.0625rem; line-height: 1.6; }
+  h1, h2, h3 { font-family: var(--fuente-titulos); font-weight: 900; text-transform: uppercase; letter-spacing: -0.01em; line-height: 1.02; }
+  h3 { letter-spacing: 0; }
+  html { scroll-padding-top: 5.5rem; }
+}
+
+@layer components {
+  /* Titulares */
+  .antetitulo { display: inline-block; padding: .3rem .65rem; font-size: .75rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; background: var(--c-primario); color: var(--sobre-primario); }
+  .titulo-seccion { font-size: clamp(1.9rem, 6.2vw, 3.4rem); margin-top: .9rem; }
+  .titular { max-width: 48rem; margin-bottom: 2.75rem; }
+  .titular--centro { margin-inline: auto; text-align: center; }
+  .titular-texto { margin-top: 1rem; font-size: 1.125rem; opacity: .8; }
+  .subrayado { box-shadow: inset 0 -.32em 0 var(--c-primario); }
+
+  /* Botones rectos y pesados */
+  .btn, .btn-sec { border-radius: 0; text-transform: uppercase; letter-spacing: .04em; font-weight: 900; font-size: .95rem; padding-inline: 1.4rem; min-height: 3rem; }
+  .btn { background: var(--c-primario); color: var(--sobre-primario); border: var(--borde) solid var(--c-primario); }
+  .btn:hover { background: color-mix(in srgb, var(--c-primario) 85%, var(--c-texto)); }
+  .btn-sec { border: var(--borde) solid currentColor; }
+  .btn-sec:hover { background: color-mix(in srgb, currentColor 10%, transparent); }
+
+  /* Bandas */
+  .banda-oscura { background: var(--c-texto); color: var(--c-fondo); }
+  .banda-oscura :focus-visible, .banda-primaria :focus-visible { outline-color: currentColor; }
+  .banda-gris { background: var(--superficie); }
+  .banda-primaria { background: var(--c-primario); color: var(--sobre-primario); }
+  .banda-primaria .antetitulo { background: var(--sobre-primario); color: var(--c-primario); }
+  /* Diagonales: la banda se monta sobre la sección vecina (margen negativo) para que el corte deje ver su fondo. */
+  .diagonal-abajo, .diagonal-arriba, .diagonal-ambas { position: relative; z-index: 1; }
+  .diagonal-abajo { clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--diagonal)), 0 100%); padding-bottom: calc(var(--ritmo) + var(--diagonal)); margin-bottom: calc(-1 * var(--diagonal)); }
+  .diagonal-arriba { clip-path: polygon(0 var(--diagonal), 100% 0, 100% 100%, 0 100%); padding-top: calc(var(--ritmo) + var(--diagonal)); margin-top: calc(-1 * var(--diagonal)); }
+  .diagonal-ambas { clip-path: polygon(0 var(--diagonal), 100% 0, 100% calc(100% - var(--diagonal)), 0 100%); padding-block: calc(var(--ritmo) + var(--diagonal)); margin-block: calc(-1 * var(--diagonal)); }
+  main > :first-child.diagonal-arriba, main > :first-child.diagonal-ambas { margin-top: 0; }
+  @media (min-width: 768px) {
+    .diagonal-abajo { padding-bottom: calc(var(--ritmo-md) + var(--diagonal)); }
+    .diagonal-arriba { padding-top: calc(var(--ritmo-md) + var(--diagonal)); }
+    .diagonal-ambas { padding-block: calc(var(--ritmo-md) + var(--diagonal)); }
+  }
+  .franja-obra { height: .75rem; background: repeating-linear-gradient(-45deg, var(--c-primario) 0 14px, var(--c-texto) 14px 28px); }
+
+  /* Tarjeta con borde grueso izquierdo */
+  .tarjeta { background: var(--c-fondo); border: 1px solid var(--linea); border-left: 6px solid var(--c-primario); padding: 1.4rem 1.4rem 1.5rem; }
+  .icono-caja { display: inline-grid; place-items: center; width: 2.75rem; height: 2.75rem; background: var(--c-texto); color: var(--c-primario); }
+
+  /* Barra superior y cabecera */
+  .barra-superior { background: var(--c-texto); color: var(--c-fondo); font-size: .85rem; height: var(--alto-barra); }
+  .barra-superior .contenedor { display: flex; align-items: center; gap: 1.25rem; height: 100%; }
+  .barra-superior a { text-decoration: none; font-weight: 800; display: inline-flex; align-items: center; gap: .4rem; white-space: nowrap; }
+  .barra-superior a:hover { color: var(--c-primario); }
+  .barra-horario { display: none; align-items: center; gap: .4rem; opacity: .85; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .barra-email { display: none !important; }
+  @media (min-width: 640px) { .barra-horario { display: inline-flex; } }
+  @media (min-width: 1024px) { .barra-email { display: inline-flex !important; margin-left: auto; } }
+
+  .envoltorio-cabecera { position: sticky; top: calc(-1 * var(--alto-barra)); z-index: 40; }
+  .cabecera--obra { background: var(--c-fondo); border-bottom: var(--borde) solid var(--c-texto); }
+  .cabecera--obra .cabecera-fila { min-height: 4.25rem; }
+  .cabecera--obra .marca-inicial { display: grid; place-items: center; width: 2.4rem; height: 2.4rem; background: var(--c-primario); color: var(--sobre-primario); font-family: var(--fuente-titulos); font-weight: 900; font-size: 1.25rem; flex-shrink: 0; }
+  .cabecera--obra .marca-nombre { font-family: var(--fuente-titulos); font-weight: 900; text-transform: uppercase; font-size: 1.05rem; letter-spacing: -0.01em; }
+  .cabecera--obra .cabecera-nav { gap: 1.4rem; }
+  .cabecera--obra .cabecera-nav a { font-size: .85rem; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; padding-block: .3rem; border-bottom: 3px solid transparent; }
+  .cabecera--obra .cabecera-nav a:hover { border-bottom-color: var(--c-primario); }
+  .cabecera--obra .cabecera-cta { min-height: 2.75rem; }
+  .cabecera--obra .menu-movil summary { text-transform: uppercase; font-weight: 900; font-size: .85rem; letter-spacing: .05em; }
+  .cabecera--obra .menu-movil-panel { border-bottom: var(--borde) solid var(--c-texto); box-shadow: none; }
+  .cabecera--obra .menu-movil-panel a { font-weight: 800; text-transform: uppercase; font-size: .9rem; }
+
+  /* Formularios */
+  .campo label { text-transform: uppercase; font-size: .75rem; letter-spacing: .08em; font-weight: 800; }
+  .campo input, .campo textarea, .campo select { width: 100%; font: inherit; color: inherit; background: var(--c-fondo); padding: .7rem .85rem; border: 2px solid color-mix(in srgb, var(--c-texto) 35%, transparent); border-radius: 0; }
+  .campo select { appearance: auto; }
+  .campo input:focus, .campo textarea:focus, .campo select:focus { border-color: var(--c-texto); outline: 3px solid var(--c-primario); outline-offset: 0; }
+  .campo-doble { display: grid; gap: 1rem; }
+  @media (min-width: 640px) { .campo-doble { grid-template-columns: 1fr 1fr; } }
+  .formulario .btn { justify-self: stretch; }
+  @media (min-width: 640px) { .formulario .btn { justify-self: start; } }
+
+  /* Pie */
+  .pie--obra { padding-top: 0; }
+  .pie--obra .pie-cuerpo { padding-top: 3.5rem; }
+  .pie--obra .pie-nombre { font-family: var(--fuente-titulos); font-weight: 900; text-transform: uppercase; font-size: 1.5rem; }
+  .pie--obra .pie-titulo { color: var(--c-primario); opacity: 1; font-weight: 800; }
+  .pie-telefono { display: inline-block; margin-top: 1.25rem; font-family: var(--fuente-titulos); font-weight: 900; font-size: clamp(1.5rem, 6vw, 2.25rem); text-decoration: none; color: var(--c-primario); }
+
+  /* Barra inferior fija (móvil): Llamar y WhatsApp */
+  .barra-movil { position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; border-top: var(--borde) solid var(--c-texto); }
+  .barra-movil a { display: flex; align-items: center; justify-content: center; gap: .5rem; min-height: 3.5rem; font-weight: 900; text-transform: uppercase; letter-spacing: .05em; text-decoration: none; }
+  .barra-movil-llamar { background: var(--c-primario); color: var(--sobre-primario); }
+  .barra-movil-whatsapp { background: var(--c-texto); color: var(--c-fondo); }
+  body:has(.barra-movil) { padding-bottom: 3.5rem; }
+  @media (min-width: 768px) {
+    .barra-movil { display: none; }
+    body:has(.barra-movil) { padding-bottom: 0; }
+  }
+
+  .texto-largo h2 { font-size: 1.15rem; }
+}

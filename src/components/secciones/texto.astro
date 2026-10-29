@@ -1,0 +1,43 @@
+---
+// Apartado de texto genérico: antetítulo, título, párrafos, imagen opcional (con sombra amarilla), lista y botón.
+// Lo usan los apartados nuevos que pide el cliente (site.yaml: `tipo: texto`).
+import { seccion, parrafos } from '../../data/site';
+import Seccion from '../ui/Seccion.astro';
+import Imagen from '../ui/Imagen.astro';
+import Icono from '../ui/Icono.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+---
+
+{
+  s && (
+    <Seccion id={Astro.props.id}>
+      <div class:list={['grid items-start gap-12', s.imagen ? 'md:grid-cols-2 md:gap-16' : 'max-w-3xl']}>
+        {s.imagen && (
+          <Imagen src={s.imagen} alt="" ancho={1000} alto={750} class="aspect-[4/3] w-[calc(100%-10px)] border-[3px] border-texto object-cover shadow-[10px_10px_0_var(--c-primario)]" />
+        )}
+        <div>
+          {s.antetitulo && <p class="antetitulo">{s.antetitulo}</p>}
+          {s.titulo && <h2 class="titulo-seccion">{s.titulo}</h2>}
+          <div class="mt-6 space-y-4 opacity-90">
+            {parrafos(s.texto).map((p) => <p>{p}</p>)}
+          </div>
+          {s.items.length > 0 && (
+            <ul class="mt-8 grid gap-3">
+              {s.items.map((it) => (
+                <li class="tarjeta flex gap-4 !py-4">
+                  <Icono nombre={it.icono} class="mt-0.5 shrink-0" tam={22} />
+                  <div>
+                    <p class="font-display font-black uppercase">{it.titulo}</p>
+                    {it.texto && <p class="text-sm opacity-80">{it.texto}</p>}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+          {s.cta?.url && <a class="btn mt-8" href={s.cta.url}>{s.cta.texto}</a>}
+        </div>
+      </div>
+    </Seccion>
+  )
+}

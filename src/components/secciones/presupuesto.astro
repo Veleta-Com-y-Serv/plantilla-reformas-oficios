@@ -1,0 +1,50 @@
+---
+// Presupuesto: banda oscura con corte en diagonal arriba. A la izquierda, titular, `items` (garantías con icono)
+// y `nota` («Sin compromiso») en sello amarillo. A la derecha, formulario completo (nombre, teléfono, localidad,
+// tipo de trabajo con los títulos de servicios.items, mensaje) que abre el correo. `boton_formulario` opcional.
+import { seccion } from '../../data/site';
+import Titular from '../ui/Titular.astro';
+import Icono from '../ui/Icono.astro';
+import FormularioContacto from '../ui/FormularioContacto.astro';
+interface Props { id: string }
+const { id } = Astro.props;
+const s = seccion(id);
+const botonForm = (s?.boton_formulario as string) || undefined;
+---
+
+{
+  s && (
+    <section id={id} class="banda-oscura diagonal-arriba seccion">
+      <div class="contenedor grid items-start gap-10 lg:grid-cols-[1fr_1.15fr] lg:gap-16">
+        <div>
+          <Titular class="!mb-8" antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} />
+          {s.items.length > 0 && (
+            <ul class="grid gap-4">
+              {s.items.map((it) => (
+                <li class="flex gap-3">
+                  <span class="presupuesto-icono"><Icono nombre={it.icono} tam={20} /></span>
+                  <div>
+                    <p class="font-display font-black uppercase">{it.titulo}</p>
+                    {it.texto && <p class="text-[.95rem] opacity-80">{it.texto}</p>}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+          {s.nota && <p class="presupuesto-nota">{s.nota}</p>}
+        </div>
+        <div class="presupuesto-tarjeta">
+          <FormularioContacto modelo="completo" prefijo={`${id}-f`} boton={botonForm} />
+        </div>
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .presupuesto-icono { display: grid; place-items: center; flex-shrink: 0; width: 2.25rem; height: 2.25rem; background: var(--c-primario); color: var(--sobre-primario); }
+  .presupuesto-nota { display: inline-block; margin-top: 2rem; padding: .6rem 1rem; font-family: var(--fuente-titulos); font-weight: 900; text-transform: uppercase; letter-spacing: .04em; border: var(--borde) dashed var(--c-primario); color: var(--c-primario); transform: rotate(-2deg); }
+  .presupuesto-tarjeta { background: var(--c-fondo); color: var(--c-texto); padding: 1.5rem 1.25rem; border-left: 8px solid var(--c-primario); }
+  .presupuesto-tarjeta :focus-visible { outline-color: var(--c-texto); }
+  @media (min-width: 768px) { .presupuesto-tarjeta { padding: 2.25rem; } }
+</style>

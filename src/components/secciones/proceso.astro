@@ -1,0 +1,51 @@
+---
+// Proceso: banda oscura con bordes en diagonal y pasos numerados en horizontal (en móvil, uno debajo de otro).
+import { seccion } from '../../data/site';
+import Titular from '../ui/Titular.astro';
+import Icono from '../ui/Icono.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+const columnas = s ? Math.min(Math.max(s.items.length, 1), 4) : 1;
+---
+
+{
+  s && (
+    <section id={Astro.props.id} class="banda-oscura diagonal-ambas">
+      <div class="contenedor">
+        <Titular antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} />
+        {s.items.length > 0 && (
+          <ol class="proceso-pasos" style={`--cols:${columnas}`}>
+            {s.items.map((it, i) => (
+              <li class="proceso-paso">
+                <span class="proceso-numero" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                <div>
+                  <h3 class="flex items-center gap-2 text-lg md:text-xl">
+                    {it.icono && <Icono nombre={it.icono} class="shrink-0 text-primario" tam={22} />}
+                    {it.titulo}
+                  </h3>
+                  {it.texto && <p class="mt-2 text-[.95rem] opacity-80">{it.texto}</p>}
+                </div>
+              </li>
+            ))}
+          </ol>
+        )}
+        {s.cta && (
+          <p class="mt-12">
+            <a class="btn" href={s.cta.url}>{s.cta.texto}</a>
+          </p>
+        )}
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .proceso-pasos { display: grid; gap: 2rem; counter-reset: paso; }
+  .proceso-paso { display: grid; grid-template-columns: auto 1fr; gap: 1rem; align-items: start; padding-top: 1.25rem; border-top: 4px solid var(--c-primario); }
+  .proceso-numero { font-family: var(--fuente-titulos); font-weight: 900; font-size: 2.6rem; line-height: .9; color: transparent; -webkit-text-stroke: 2px var(--c-primario); }
+  @media (min-width: 900px) {
+    .proceso-pasos { grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); gap: 1.5rem; }
+    .proceso-paso { grid-template-columns: 1fr; }
+    .proceso-numero { font-size: 4rem; }
+  }
+</style>

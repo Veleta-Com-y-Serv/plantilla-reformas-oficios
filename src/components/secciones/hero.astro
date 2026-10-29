@@ -1,0 +1,66 @@
+---
+// Hero contundente: foto de obra con velo oscuro y borde inferior en diagonal. A la izquierda, titular pesado,
+// texto, bloque `destacado` (p. ej. «Urgencias 24 h») y botones `cta` (llamar) y `cta_secundario` (presupuesto).
+// A la derecha, tarjeta con un formulario corto (nombre, teléfono, qué necesitas) que abre el correo.
+// Campos opcionales: `formulario_titulo` (si falta, se usa el texto de `cta_secundario`) y `boton_formulario`.
+import { seccion } from '../../data/site';
+import Imagen from '../ui/Imagen.astro';
+import Icono from '../ui/Icono.astro';
+import FormularioContacto from '../ui/FormularioContacto.astro';
+interface Props { id: string; primera?: boolean }
+const { id, primera = false } = Astro.props;
+const s = seccion(id);
+const tituloForm = (s?.formulario_titulo as string) || s?.cta_secundario?.texto || '';
+const botonForm = (s?.boton_formulario as string) || undefined;
+const esTel = (u?: string) => Boolean(u && u.startsWith('tel:'));
+---
+
+{
+  s && (
+    <section id={id} class="hero-obra banda-oscura diagonal-abajo relative isolate overflow-hidden">
+      {s.imagen && (
+        <Imagen src={s.imagen} alt="" ancho={1920} alto={1080} prioridad={primera} class="absolute inset-0 -z-20 h-full w-full object-cover" />
+      )}
+      <div class="hero-velo absolute inset-0 -z-10" aria-hidden="true" />
+      <div class="contenedor grid items-center gap-10 pt-12 md:pt-20 lg:grid-cols-[1.2fr_1fr] lg:gap-14">
+        <div>
+          {s.antetitulo && <p class="antetitulo">{s.antetitulo}</p>}
+          {s.titulo && <h1 class="mt-5 text-[clamp(2.1rem,7.2vw,4.25rem)] [overflow-wrap:break-word]">{s.titulo}</h1>}
+          {s.texto && <p class="mt-5 max-w-xl text-lg opacity-90 md:text-xl">{s.texto}</p>}
+          {s.destacado && (
+            <div class="hero-destacado mt-7">
+              <Icono nombre="rayo" class="shrink-0 text-primario" tam={28} />
+              <div>
+                {s.destacado.titulo && <p class="font-display text-lg font-black uppercase md:text-xl">{s.destacado.titulo}</p>}
+                {s.destacado.texto && <p class="text-sm opacity-85 md:text-base">{s.destacado.texto}</p>}
+              </div>
+            </div>
+          )}
+          {(s.cta || s.cta_secundario) && (
+            <div class="mt-8 flex flex-wrap gap-3">
+              {s.cta && (
+                <a class="btn" href={s.cta.url}>
+                  {esTel(s.cta.url) && <Icono nombre="telefono" tam={20} />}
+                  {s.cta.texto}
+                </a>
+              )}
+              {s.cta_secundario && <a class="btn-sec" href={s.cta_secundario.url}>{s.cta_secundario.texto}</a>}
+            </div>
+          )}
+        </div>
+        <div class="hero-tarjeta">
+          {tituloForm && <p class="font-display text-xl font-black uppercase md:text-2xl">{tituloForm}</p>}
+          <FormularioContacto modelo="corto" prefijo={`${id}-f`} boton={botonForm} class="mt-5" />
+        </div>
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .hero-velo { background: linear-gradient(100deg, color-mix(in srgb, var(--c-texto) 94%, transparent) 0%, color-mix(in srgb, var(--c-texto) 82%, transparent) 55%, color-mix(in srgb, var(--c-texto) 62%, transparent) 100%); }
+  .hero-destacado { display: flex; gap: .9rem; align-items: center; max-width: 34rem; padding: .9rem 1.1rem; border-left: 6px solid var(--c-primario); background: color-mix(in srgb, var(--c-fondo) 10%, transparent); }
+  .hero-tarjeta { background: var(--c-fondo); color: var(--c-texto); padding: 1.5rem 1.25rem; border-top: 8px solid var(--c-primario); box-shadow: 10px 10px 0 var(--c-primario); margin-right: 10px; }
+  .hero-tarjeta :focus-visible { outline-color: var(--c-texto); }
+  @media (min-width: 768px) { .hero-tarjeta { padding: 2rem; } }
+</style>
