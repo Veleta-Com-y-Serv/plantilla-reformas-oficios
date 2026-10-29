@@ -2,6 +2,7 @@
 // Zonas de trabajo: `texto` con el radio de actuación y `items` (titulo = localidad) como etiquetas cuadradas.
 // `imagen` opcional (un plano de la comarca) a la derecha.
 import { seccion } from '../../data/site';
+import { altSeccion } from '../../lib/seo';
 import Seccion from '../ui/Seccion.astro';
 import Titular from '../ui/Titular.astro';
 import Imagen from '../ui/Imagen.astro';
@@ -33,7 +34,7 @@ const s = seccion(Astro.props.id);
           )}
         </div>
         {s.imagen && (
-          <Imagen src={s.imagen} alt="" ancho={1000} alto={750} class="aspect-[4/3] w-full border-[3px] border-texto object-cover shadow-[10px_10px_0_var(--c-primario)]" />
+          <Imagen src={s.imagen} alt={altSeccion(s)} ancho={1000} alto={750} class="aspect-[4/3] w-full border-[3px] border-texto object-cover shadow-[10px_10px_0_var(--c-primario)]" />
         )}
       </div>
     </Seccion>

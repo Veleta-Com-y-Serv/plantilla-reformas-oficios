@@ -2,6 +2,7 @@
 // Contacto: bloques grandes con borde grueso (teléfono, WhatsApp, email, dirección y horario de site.yaml → contacto)
 // e `imagen` opcional (plano). Si la sección «presupuesto» no está activa, añade aquí el formulario de contacto.
 import { seccion, site, tel, whatsapp, mapa } from '../../data/site';
+import { altSeccion } from '../../lib/seo';
 import Seccion from '../ui/Seccion.astro';
 import Titular from '../ui/Titular.astro';
 import Icono from '../ui/Icono.astro';
@@ -68,7 +69,7 @@ const botonForm = (s?.boton_formulario as string) || undefined;
           </div>
         ) : (
           s.imagen && (
-            <Imagen src={s.imagen} alt="" ancho={1200} alto={800} class="aspect-[3/2] w-full border-[3px] border-texto object-cover" />
+            <Imagen src={s.imagen} alt={altSeccion(s)} ancho={1200} alto={800} class="aspect-[3/2] w-full border-[3px] border-texto object-cover" />
           )
         )}
       </div>

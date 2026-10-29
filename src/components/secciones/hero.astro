@@ -4,6 +4,7 @@
 // A la derecha, tarjeta con un formulario corto (nombre, teléfono, qué necesitas) que abre el correo.
 // Campos opcionales: `formulario_titulo` (si falta, se usa el texto de `cta_secundario`) y `boton_formulario`.
 import { seccion } from '../../data/site';
+import { altHero } from '../../lib/seo';
 import Imagen from '../ui/Imagen.astro';
 import Icono from '../ui/Icono.astro';
 import FormularioContacto from '../ui/FormularioContacto.astro';
@@ -19,7 +20,7 @@ const esTel = (u?: string) => Boolean(u && u.startsWith('tel:'));
   s && (
     <section id={id} class="hero-obra banda-oscura diagonal-abajo relative isolate overflow-hidden">
       {s.imagen && (
-        <Imagen src={s.imagen} alt="" ancho={1920} alto={1080} prioridad={primera} class="absolute inset-0 -z-20 h-full w-full object-cover" />
+        <Imagen src={s.imagen} alt={altHero()} ancho={1920} alto={1080} prioridad={primera} class="absolute inset-0 -z-20 h-full w-full object-cover" />
       )}
       <div class="hero-velo absolute inset-0 -z-10" aria-hidden="true" />
       <div class="contenedor grid items-center gap-10 pt-12 md:pt-20 lg:grid-cols-[1.2fr_1fr] lg:gap-14">

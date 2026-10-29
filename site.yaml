@@ -135,6 +135,17 @@ secciones:
       - { titulo: Precio cerrado por escrito, texto: "Lo que firmas es lo que pagas.", icono: euro }
       - { titulo: Un único responsable, texto: "Un encargado de obra te atiende de principio a fin.", icono: usuarios }
 
+  preguntas:
+    activa: true
+    antetitulo: Preguntas frecuentes
+    titulo: Lo que nos preguntan antes de la obra
+    preguntas:
+      - { pregunta: "¿El presupuesto tiene coste?", respuesta: "No. Vamos a ver la obra, medimos y te damos un precio cerrado por escrito, sin compromiso." }
+      - { pregunta: "¿Cuánto dura la reforma de un baño?", respuesta: "Entre una y dos semanas, según el estado de las tuberías y el tipo de plato o bañera. Te damos la fecha de fin antes de empezar." }
+      - { pregunta: "¿Os encargáis de los permisos?", respuesta: "Sí. Pedimos la licencia o la comunicación de obra al ayuntamiento y te avisamos cuando esté concedida." }
+      - { pregunta: "¿Puedo seguir viviendo en casa durante la obra?", respuesta: "En la mayoría de reformas parciales, sí. Organizamos los trabajos por zonas y dejamos todo recogido al final de cada día." }
+      - { pregunta: "¿Qué garantía tienen los trabajos?", respuesta: "Todos nuestros trabajos tienen garantía por escrito. Si algo falla, volvemos sin coste." }
+
   contacto:
     activa: true
     antetitulo: Contacto

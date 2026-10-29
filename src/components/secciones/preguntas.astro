@@ -1,0 +1,39 @@
+---
+// Preguntas frecuentes: acordeón nativo <details> en cajas de borde grueso con sombra de color al abrirse,
+// sin JavaScript. Campos: `preguntas[]` (pregunta, respuesta). Sin preguntas no se pinta.
+// También sirve de diseño para apartados nuevos (`tipo: preguntas`).
+import { seccion } from '../../data/site';
+import Seccion from '../ui/Seccion.astro';
+import Titular from '../ui/Titular.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+const preguntas = s ? s.preguntas.filter((p) => p && p.pregunta) : [];
+---
+
+{
+  s && preguntas.length > 0 && (
+    <Seccion id={Astro.props.id} contenedor="max-w-4xl">
+      <Titular antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} />
+      <div class="grid gap-4">
+        {preguntas.map((p) => (
+          <details class="faq border-[3px] border-texto bg-fondo">
+            <summary class="flex items-center justify-between gap-4 px-5 py-4 text-lg font-extrabold md:px-6">
+              {p.pregunta}
+              <span class="faq-signo grid h-10 w-10 shrink-0 place-items-center bg-primario text-2xl font-black text-[var(--sobre-primario)]" aria-hidden="true"><span>+</span></span>
+            </summary>
+            {p.respuesta && <p class="border-t-[3px] border-texto px-5 py-4 opacity-85 md:px-6">{p.respuesta}</p>}
+          </details>
+        ))}
+      </div>
+    </Seccion>
+  )
+}
+
+<style>
+  .faq { transition: box-shadow 0.2s ease, transform 0.2s ease; }
+  .faq[open] { box-shadow: 8px 8px 0 var(--c-primario); }
+  .faq summary { list-style: none; cursor: pointer; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq-signo span { display: block; transition: transform 0.2s ease; }
+  .faq[open] .faq-signo span { transform: rotate(45deg); }
+</style>
