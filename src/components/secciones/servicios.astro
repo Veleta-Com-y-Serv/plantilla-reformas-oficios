@@ -1,10 +1,12 @@
 ---
 // Servicios en rejilla densa (6-8): tarjetas con borde grueso a la izquierda e icono en caja negra.
-// Sus títulos son también las opciones de «Tipo de trabajo» del formulario de presupuesto.
+// Sus títulos son también las opciones de «Tipo de trabajo» del formulario de presupuesto. Los servicios con
+// `detalle` tienen página propia (src/lib/paginas.ts): el título enlaza a ella y toda la tarjeta es clicable.
 import { seccion } from '../../data/site';
 import Seccion from '../ui/Seccion.astro';
 import Titular from '../ui/Titular.astro';
 import Icono from '../ui/Icono.astro';
+import { enlaceDe } from '../../lib/paginas';
 interface Props { id: string }
 const s = seccion(Astro.props.id);
 ---
@@ -16,10 +18,11 @@ const s = seccion(Astro.props.id);
       {s.items.length > 0 && (
         <ul class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {s.items.map((it) => (
-            <li class="tarjeta grid grid-cols-[auto_1fr] items-start gap-x-4 gap-y-1 sm:flex sm:flex-col sm:gap-3">
+            <li class:list={["tarjeta servicio grid grid-cols-[auto_1fr] items-start gap-x-4 gap-y-1 sm:flex sm:flex-col sm:gap-3", { "servicio--enlace": enlaceDe(it) }]}>
               <span class="icono-caja row-span-2"><Icono nombre={it.icono} /></span>
-              <h3 class="text-base md:text-lg">{it.titulo}</h3>
+              <h3 class="text-base md:text-lg">{enlaceDe(it) ? <a href={enlaceDe(it)} class="servicio-enlace">{it.titulo}</a> : it.titulo}</h3>
               {it.texto && <p class="text-[.95rem] leading-snug opacity-80">{it.texto}</p>}
+              {enlaceDe(it) && <span class="servicio-ver col-start-2" aria-hidden="true">Ver más <Icono nombre="flecha" tam={16} /></span>}
             </li>
           ))}
         </ul>
@@ -32,3 +35,13 @@ const s = seccion(Astro.props.id);
     </Seccion>
   )
 }
+
+<style>
+  .servicio--enlace { position: relative; }
+  .servicio--enlace:hover { border-left-color: var(--c-texto); }
+  .servicio-enlace { color: inherit; text-decoration: none; }
+  .servicio-enlace::after { content: ""; position: absolute; inset: 0; }
+  .servicio-enlace:focus-visible { outline: none; }
+  .servicio--enlace:has(.servicio-enlace:focus-visible) { outline: 3px solid var(--c-texto); outline-offset: 2px; }
+  .servicio-ver { display: inline-flex; align-items: center; gap: .3rem; margin-top: auto; font-weight: 900; font-size: .8rem; text-transform: uppercase; letter-spacing: .05em; }
+</style>

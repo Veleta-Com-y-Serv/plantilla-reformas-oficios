@@ -16,11 +16,18 @@ secciones:
   - { id: contacto, nombre: Contacto }
 estilo: contundente
 plan_minimo: gratis
-version: 1.2.0
+version: 1.3.0
 base: astrowind
 demo_url: https://demo-plantilla-reformas-oficios.noexpertise.com
 activa: true
 orden: 100
+
+# Páginas propias (docs/plantillas.md § Fichas por elemento y páginas por zona). Espejo en src/data/fichas.ts.
+# Cada servicio con `detalle` tiene su página en /servicios/<slug>/ y cada zona con `texto`, en /zonas/<slug>/.
+fichas:
+  - { lista: servicios, campo: items, ruta: servicios, nombre: Servicio, tipo: Service }
+zonas:
+  ruta: zonas
 
 # Asistente de puesta en marcha (NoExpertise): un paso por pantalla. Rutas del site sin índices;
 # tipos: texto y lista (la IA propone), datos, fotos, eleccion (colores y logo) y repaso.

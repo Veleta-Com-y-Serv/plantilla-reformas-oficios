@@ -30,7 +30,7 @@ menu:
   - { texto: Contacto, url: "/#contacto" }
 boton_cabecera: { texto: Pide presupuesto, url: "/#presupuesto" }
 seo:
-  titulo: Reformas Moncayo · Reformas, fontanería y electricidad en Tarazona
+  titulo: Reformas Moncayo · Reformas y fontanería en Tarazona
   descripcion: "Reformas integrales, cocinas, baños, fontanería y electricidad en Tarazona, Borja y el Moncayo. Visita y presupuesto gratis en 24 horas."
   tipo: HomeAndConstructionBusiness
 marca_pie: true
@@ -54,14 +54,58 @@ secciones:
     titulo: Todo lo que necesita tu casa
     texto: "Un solo equipo para toda la obra. Sin ir llamando a cinco gremios."
     items:
-      - { titulo: Reformas integrales, texto: "Pisos y casas completas, con proyecto y licencia.", icono: casa }
-      - { titulo: Cocinas, texto: "Muebles, encimeras, azulejos e instalación nueva.", icono: cocina }
-      - { titulo: Baños, texto: "Cambiamos la bañera por plato de ducha en dos días.", icono: ducha }
-      - { titulo: Fontanería, texto: "Tuberías, calentadores, fugas y desatascos.", icono: grifo }
+      - titulo: Reformas integrales
+        texto: "Pisos y casas completas, con proyecto y licencia."
+        icono: casa
+        imagenes: "/fotos/hero.jpg; /fotos/taller.jpg"
+        detalle: |
+          Una reforma integral es poner la casa patas arriba para dejarla como siempre la has querido: distribución nueva, instalaciones de agua y luz al día, suelos, carpinterías y pintura. Hacerla con un solo equipo evita lo peor de las obras: gremios que no se hablan, fechas que se encadenan y un presupuesto que crece cada semana.
+
+          Empezamos con una visita para ver la vivienda contigo, medir y escuchar qué necesitas. Con eso preparamos el proyecto y el presupuesto cerrado por escrito, con las fechas de cada fase. Si la obra necesita licencia o comunicación al ayuntamiento, nos encargamos del papeleo.
+
+          Durante la obra tienes un encargado que la sigue de principio a fin y te cuenta cada viernes cómo va. Trabajamos con albañiles, fontaneros, electricistas, carpinteros y pintores propios, así que el orden de los trabajos lo marcamos nosotros y no hay esperas entre gremios. Al terminar repasamos todo contigo, limpiamos y te entregamos la casa lista para vivir, con la garantía por escrito.
+      - titulo: Cocinas
+        texto: "Muebles, encimeras, azulejos e instalación nueva."
+        icono: cocina
+        imagenes: "/fotos/trabajo-cocina.jpg; /fotos/trabajo-cocina-antes.jpg"
+        detalle: |
+          La cocina es donde más se nota una reforma y donde más cosas tienen que encajar: muebles, electrodomésticos, enchufes, tomas de agua, salida de humos y luz. Por eso la planteamos entera, desde la distribución hasta el último tirador, para que funcione bien en el día a día.
+
+          En la visita medimos, vemos cómo cocinas y te proponemos opciones: abrirla al salón, ganar encimera, cambiar la isla de sitio o aprovechar mejor un rincón. Elegimos contigo los muebles, la encimera y el revestimiento, y renovamos la fontanería y la electricidad para que todo quede a la medida de lo que vas a poner.
+
+          Retiramos la cocina vieja, hacemos la obra, montamos los muebles y dejamos los electrodomésticos conectados y probados. Mientras dura, organizamos el trabajo para que puedas seguir en casa siempre que sea posible, y recogemos cada día. El precio es cerrado y la fecha de entrega la sabes antes de empezar.
+      - titulo: Baños
+        texto: "Cambiamos la bañera por plato de ducha en dos días."
+        icono: ducha
+        imagenes: "/fotos/trabajo-bano.jpg; /fotos/trabajo-bano-antes.jpg"
+        detalle: |
+          Cambiar la bañera por un plato de ducha es el trabajo que más nos piden, y con razón: el baño gana espacio, es más seguro para entrar y salir y se limpia mucho mejor. Lo hacemos en muy poco tiempo, sin tener que levantar todo el baño si no hace falta.
+
+          Si prefieres una reforma completa, cambiamos también azulejos, suelo, sanitarios, mueble de lavabo y grifería, y revisamos las tuberías para que no haya sorpresas detrás de los azulejos nuevos. Te ayudamos a elegir materiales que aguanten la humedad y sean fáciles de mantener.
+
+          Antes de empezar te damos el presupuesto cerrado y la fecha de fin. Protegemos el resto de la casa del polvo, trabajamos con orden y, al acabar, dejamos el baño limpio y listo para usar. Todos los trabajos tienen garantía por escrito: si algo falla, volvemos sin coste.
+      - titulo: Fontanería
+        texto: "Tuberías, calentadores, fugas y desatascos."
+        icono: grifo
+        detalle: |
+          Atendemos desde una fuga pequeña hasta la instalación completa de una vivienda. Cambiamos tuberías antiguas de hierro o plomo, instalamos y revisamos calentadores y termos, sustituimos grifos y cisternas, y desatascamos desagües.
+
+          Si tienes una urgencia, como una fuga de agua o una tubería reventada, llámanos: te devolvemos la llamada en menos de una hora y te decimos cuándo podemos estar en tu casa. Mientras llegamos, te explicamos por teléfono cómo cerrar el agua para que el daño no vaya a más.
+
+          En las reformas renovamos la instalación entera para que quede preparada para años, con llaves de corte por estancias y materiales actuales. Te damos el precio antes de empezar y, al terminar, probamos la instalación contigo y te explicamos dónde están las llaves de paso.
       - { titulo: Electricidad, texto: "Cuadros, boletines, puntos de luz y cargadores.", icono: enchufe }
       - { titulo: Pintura, texto: "Interiores, fachadas y alisado de gotelé.", icono: rodillo }
       - { titulo: Carpintería y ventanas, texto: "Puertas, armarios y ventanas de PVC o aluminio.", icono: ventana }
-      - { titulo: Tejados y fachadas, texto: "Goteras, aislamiento y rehabilitación.", icono: ladrillo }
+      - titulo: Tejados y fachadas
+        texto: "Goteras, aislamiento y rehabilitación."
+        icono: ladrillo
+        imagenes: "/fotos/trabajo-tejado.jpg; /fotos/trabajo-tejado-antes.jpg; /fotos/trabajo-fachada.jpg"
+        detalle: |
+          Una gotera rara vez se arregla sola: el agua que entra por una teja rota acaba pudriendo vigas, manchando techos y estropeando el aislamiento. En las casas de pueblo de la comarca, con tejados de teja árabe y muros de piedra, conviene revisarlos antes de que el problema crezca.
+
+          Subimos a ver el tejado, te enseñamos fotos de lo que encontramos y te proponemos la solución: retejar, cambiar el canalón, impermeabilizar o rehacer la cubierta con aislamiento nuevo. Montamos el andamio y las protecciones necesarias y trabajamos con seguridad.
+
+          En las fachadas picamos y rejuntamos la piedra, reparamos grietas, aislamos por fuera si hace falta y pintamos carpinterías y aleros. Respetamos el aspecto de la casa y del pueblo, y pedimos los permisos que hagan falta en el ayuntamiento antes de empezar.
 
   proceso:
     activa: true
@@ -102,13 +146,20 @@ secciones:
     titulo: Tarazona y 40 km alrededor
     texto: "Moncayo, Campo de Borja y la zona de Ágreda. Si tu pueblo no está, pregúntanos."
     imagen: /fotos/comarca.jpg
+    titulo_pagina: "Reformas en {zona}"
+    texto_pagina: "Albañiles, fontaneros, electricistas y pintores propios en {zona}. Precio cerrado por escrito y fecha de entrega que se cumple."
     items:
-      - { titulo: Tarazona }
-      - { titulo: Borja }
-      - { titulo: Ágreda }
-      - { titulo: Novallas }
+      - titulo: Tarazona
+        texto: "Es nuestra casa: aquí tenemos el taller, en la Avenida de la Paz, y aquí hemos hecho buena parte de nuestras obras, desde pisos del ensanche hasta casas del casco antiguo con muros de piedra y vigas de madera. Reformamos cocinas y baños, renovamos instalaciones de luz y agua y rehabilitamos tejados y fachadas respetando el aspecto del barrio. Si tienes una urgencia en Tarazona, llegamos antes que nadie."
+      - titulo: Borja
+        texto: "Trabajamos a menudo en Borja y en los pueblos del Campo de Borja, como Ainzón. Muchas de las casas son de pueblo, con patios, bodegas y tejados de teja árabe que piden cuidado; otras son pisos que se quieren poner al día. Hacemos reformas integrales, baños con plato de ducha, cocinas nuevas y arreglos de tejado. Vamos a ver la obra sin compromiso y te damos el presupuesto cerrado por escrito."
+      - titulo: Ágreda
+        texto: "Aunque Ágreda ya es Soria, está a un paso de nuestro taller y trabajamos allí con frecuencia. Conocemos bien sus casas de piedra y los inviernos fríos del Moncayo, así que cuidamos especialmente el aislamiento de tejados y fachadas, las calefacciones y las instalaciones de agua que tienen que aguantar las heladas. También hacemos baños, cocinas y reformas completas de pisos y casas."
+      - titulo: Novallas
+        texto: "En Novallas, junto a Tarazona, hemos rehabilitado fachadas de casas de pueblo, reformado baños y cocinas y atendido urgencias de fontanería un domingo cualquiera. Al estar tan cerca, podemos ir a ver tu obra el mismo día y organizar los trabajos con poco margen. Trabajamos también en Malón y Torrellas, los pueblos de alrededor. Cuéntanos qué necesitas y te damos fecha."
       - { titulo: Malón }
-      - { titulo: Vera de Moncayo }
+      - titulo: Vera de Moncayo
+        texto: "Vera de Moncayo y los pueblos al pie del Moncayo, como Grisel y Los Fayos, tienen casas con mucha historia y tejados que sufren con la nieve y el viento. Aquí hacemos sobre todo rehabilitación de tejados con aislamiento, fachadas de piedra y reformas para convertir casas antiguas en viviendas cómodas para todo el año, sin perder su carácter."
       - { titulo: Torrellas }
       - { titulo: Los Fayos }
       - { titulo: Grisel }
